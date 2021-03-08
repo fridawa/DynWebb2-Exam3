@@ -7,19 +7,45 @@
     <title>Document</title>
   </head>
   <body>
+    <header>
+      <h1>Star Wars Wiki</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">New Search</a></li>
+          <li><a href="detailed.html">Details</a></li>
+        </ul>
+      </nav>
+    </header>
+
     <!-- Söka åtminstone på titeln -->
     <form action="">
-      <label for="search-input">Sök efter film</label>
+      <label for="search-input">Search for Star Wars info</label>
       <input
         type="search"
         id="search-input"
         aria-label="Search trough Star Wars content"
       />
-      <button type="button">Sök</button>
+      <button type="button">Serach</button>
     </form>
 
     <!-- Sökresultat ska visa filmtitel, regissörens namn, filmens opening crawl -->
     <!-- Ska även finnas en länk från sökresultatet till detaljsida -->
-    <div class="search-result"></div>
+    <!-- Div för att lägga in templaten i från javascripten -->
+    <div>
+      <div id="course-cards"></div>
+    </div>
+
+    <!-- Template för datan från API -->
+    <template id="courses-card-template">
+      <div>
+        <div>
+          <div class="card-body">
+            <h5 id="courseName" class="card-title"></h5>
+            <p id="courseId" class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    </template>
   </body>
+  <script src="app.js"></script>
 </html>
