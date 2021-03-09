@@ -26,6 +26,7 @@ fetch(url)
   });
 
 // kod från johans väderapplikation
+// förstå detta bättre innan inlämning!!!
 function matchSubstring(main, sub) {
   return (
     main.substr(0, sub.length).localeCompare(sub, "sv", {
