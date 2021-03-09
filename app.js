@@ -69,5 +69,3 @@ function searchFilm() {
 
   console.log(query);
 }
-
-// Funktion för att skriva ut detaljer
