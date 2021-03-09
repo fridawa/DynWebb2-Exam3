@@ -1,34 +1,5 @@
-// // FETCH DATA
-// // Denna del av koden är till stor del hämtad från föreläsningen om fetch
-// // Men anpassats för att funka ihop med resterande delar av min egen kod
-
-// // Skapar arrayen där datan ska sparas
-// let filmArray = [];
-
-// // URL till API
-// // const url = "http://webbred2.utb.hb.se/~fewe/api/api.php?data=courses";
-// const url = "https://swapi.dev/api/films/";
-
-// // Fetch
-// fetch(url)
-//   // Översätter datan till json-format
-//   .then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//   })
-//   // Lägger datan från API i en variabel
-//   .then((x) => {
-//     filmArray = x;
-//     console.log(filmArray);
-//   });
-
-// FETCH DATA
-// Denna del av koden är till stor del hämtad från föreläsningen om fetch
-// Men anpassats för att funka ihop med resterande delar av min egen kod
-
 // Skapar arrayen där datan ska sparas
-let coursesArray = [];
+let filmArray = [];
 
 // URL till API
 const url = "https://swapi.dev/api/films/";
@@ -43,39 +14,60 @@ fetch(url)
       throw new Error("Something went wrong");
     }
   })
+
   // Lägger datan från API i en variabel
   .then((x) => {
-    coursesArray = x;
-    console.log(coursesArray);
-    createTable(coursesArray); // Kallar på funktionen så att kurserna visas
+    filmArray = x.results;
+    console.log(filmArray);
   })
 
   .catch((error) => {
     alert(error);
   });
 
-//TEMPLATE FÖR KURSERNA
-function createTable(courses) {
-  // Sätter HTML-templaten till en egen variabel för att smidigare kunna ange denna
-  let template = document.getElementById("courses-card-template");
-
-  for (let i = 0; i < courses; i++) {
-    let clone = template.content.cloneNode(true);
-    clone.querySelector("#courseName").textContent += courses[i].count;
-    console.log(courses[i]);
-    document.getElementById("course-cards").appendChild(clone);
-  }
-  // Funktion som skapar templaten
-  // Itererar över alla element inuti coursesArray
-  // courses.forEach(function (c) {
-  //   // Gör en clone av templaten som innehåll sedan kan läggas i
-  //   let clone = template.content.cloneNode(true);
-
-  //   // Hämtar element från den klonade templaten och sätter i dessa olika data från APIt
-  //   clone.querySelector("#courseName").textContent = c.count;
-  //   clone.querySelector("#courseId").innerHTML = c.count;
-
-  //   // Appendar clonen till diven med ID course-cards i HTML-dokumentet
-  //   document.getElementById("course-cards").appendChild(clone);
-  // });
+// kod från johans väderapplikation
+function matchSubstring(main, sub) {
+  return (
+    main.substr(0, sub.length).localeCompare(sub, "sv", {
+      sensitivity: "base",
+    }) === 0
+  );
 }
+
+// SÖK EFTER FILM
+document.getElementById("btn-login").addEventListener("click", searchFilm);
+
+// kod från johans väderapplikation
+function searchFilm() {
+  const inputElement = document.getElementById("search-input");
+  const searchResultsElement = document.getElementById("search-result");
+  const templateFilm = document.getElementById("template-film");
+  const query = inputElement.value.trim();
+
+  if (query.length === 0) return; // Stoppar funktionen här (alltså söker ej) om inget angetts i sökfältet
+
+  let selection = filmArray.filter((film) => matchSubstring(film.title, query));
+
+  searchResultsElement.innerHTML = ""; // Tömmer sökresultaten mellan varje klick på sök-knappen
+
+  selection.forEach((film) => {
+    let element = document.importNode(templateFilm.content, true);
+    element.querySelector(".title").textContent = `Title: ${film.title}`;
+    element.querySelector(
+      ".director"
+    ).textContent = `Director: ${film.director}`;
+    element.querySelector(
+      ".opening-crawl"
+    ).textContent = `Opening Crawl: ${film.opening_crawl}`;
+
+    element.querySelector(
+      ".link-to-details"
+    ).href = `details.html?url=${film.url}`;
+
+    searchResultsElement.appendChild(element);
+  });
+
+  console.log(query);
+}
+
+// Funktion för att skriva ut detaljer
