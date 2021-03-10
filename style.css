@@ -1,5 +1,38 @@
+/* Fonts from: https://www.fontspace.com/sf-distant-galaxy-font-f6436 */
+@font-face {
+  font-family: "SW-BI";
+  src: url(fonts/sw-font-black-italic.ttf);
+}
+@font-face {
+  font-family: "SW-BLI";
+  src: url(fonts/sw-font-black-line-italic.ttf);
+}
+@font-face {
+  font-family: "SW-BLR";
+  src: url(fonts/sw-font-black-line-reg.ttf);
+}
+@font-face {
+  font-family: "SW-BR";
+  src: url(fonts/sw-font-black-reg.ttf);
+}
+@font-face {
+  font-family: "SW-IL";
+  src: url(fonts/sw-font-italic-line.ttf);
+}
+@font-face {
+  font-family: "SW-I";
+  src: url(fonts/sw-font-italic.ttf);
+}
+@font-face {
+  font-family: "SW-R";
+  src: url(fonts/sw-font-reg.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+h1 {
+  font-family: "SW-I", arial;
 }
