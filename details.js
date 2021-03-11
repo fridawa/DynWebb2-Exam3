@@ -19,32 +19,32 @@ function detailedPage(detailed) {
   document.getElementById("title").innerHTML = `${detailed.title}`;
   document.getElementById(
     "episode-id"
-  ).innerHTML = `Episode ID: ${detailed.episode_id}`;
+  ).innerHTML = `<span>Episode ID: </span>${detailed.episode_id}`;
   document.getElementById(
     "opening-crawl"
-  ).innerHTML = `Opening Crawl: ${detailed.opening_crawl}`;
+  ).innerHTML = `<span>Opening Crawl: </span>${detailed.opening_crawl}`;
   document.getElementById(
     "director"
-  ).innerHTML = `Director: ${detailed.director}`;
+  ).innerHTML = `<span>Director: </span>${detailed.director}`;
   document.getElementById(
     "producer"
-  ).innerHTML = `Producer: ${detailed.producer}`;
+  ).innerHTML = `<span>Producer: </span>${detailed.producer}`;
   document.getElementById(
     "release-date"
-  ).innerHTML = `Release Date: ${detailed.release_date}`;
+  ).innerHTML = `<span>Release Date: </span>${detailed.release_date}`;
   document.getElementById(
     "characters"
-  ).innerHTML = `Characters: ${detailed.characters.length}`;
+  ).innerHTML = `<span>Characters: </span>${detailed.characters.length}`;
   document.getElementById(
     "planets"
-  ).innerHTML = `Planets: ${detailed.planets.length}`;
+  ).innerHTML = `<span>Planets: </span>${detailed.planets.length}`;
   document.getElementById(
     "starships"
-  ).innerHTML = `Starships: ${detailed.starships.length}`;
+  ).innerHTML = `<span>Starships: </span>${detailed.starships.length}`;
   document.getElementById(
     "vehicles"
-  ).innerHTML = `Vehicles: ${detailed.vehicles.length}`;
+  ).innerHTML = `<span>Vehicles: </span>${detailed.vehicles.length}`;
   document.getElementById(
     "species"
-  ).innerHTML = `Species: ${detailed.species.length}`;
+  ).innerHTML = `<span>Species: </span>${detailed.species.length}`;
 }

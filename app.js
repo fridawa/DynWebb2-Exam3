@@ -54,17 +54,17 @@ function searchFilm() {
 
   selection.forEach((film) => {
     let element = document.importNode(templateFilm.content, true);
-    element.querySelector(".title").textContent = `${film.title}`;
+    element.querySelector(".title").innerHTML = `${film.title}`;
     element.querySelector(
       ".director"
-    ).textContent = `Director: ${film.director}`;
+    ).innerHTML = `<span> Director: </span>${film.director}`;
     element.querySelector(
       ".opening-crawl"
-    ).textContent = `Opening Crawl: ${film.opening_crawl}`;
+    ).innerHTML = `<span>Opening Crawl: </span>${film.opening_crawl}`;
 
     element.querySelector(
       ".link-to-details"
-    ).href = `details.html?url=${film.url}`;
+    ).href = `details.html?url=${film.url.replace("http", "https")}`; //Safari funkade inte med http
 
     searchResultsElement.appendChild(element);
   });
