@@ -16,7 +16,7 @@ fetch(uri)
 
 function detailedPage(detailed) {
   console.log(detailed);
-  document.getElementById("title").innerHTML = `Title: ${detailed.title}`;
+  document.getElementById("title").innerHTML = `${detailed.title}`;
   document.getElementById(
     "episode-id"
   ).innerHTML = `Episode ID: ${detailed.episode_id}`;

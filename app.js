@@ -36,6 +36,7 @@ function matchSubstring(main, sub) {
 }
 
 // SÖK EFTER FILM
+// Vid tid över: Fixa så att även tryck på keyup: enter funkar
 document.getElementById("btn-login").addEventListener("click", searchFilm);
 
 // kod från johans väderapplikation
@@ -53,7 +54,7 @@ function searchFilm() {
 
   selection.forEach((film) => {
     let element = document.importNode(templateFilm.content, true);
-    element.querySelector(".title").textContent = `Title: ${film.title}`;
+    element.querySelector(".title").textContent = `${film.title}`;
     element.querySelector(
       ".director"
     ).textContent = `Director: ${film.director}`;

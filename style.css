@@ -35,4 +35,65 @@
 }
 h1 {
   font-family: "SW-I", arial;
+  color: #ffcf41;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "SW-BI", arial;
+  color: #ffcf41;
+}
+h3 {
+  font-family: "SW-BR", arial;
+  color: #ffcf41;
+}
+body {
+  background: rgb(18, 18, 18);
+  padding: 2rem;
+}
+
+.details-div,
+.results-div,
+.nav-back,
+.nav-details,
+input {
+  font-family: "news-gothic-std", sans-serif;
+}
+
+.details-div,
+.results-div,
+label {
+  color: rgb(237, 235, 235);
+}
+
+.details-div,
+.search-result-div {
+  background-color: rgb(37, 37, 37);
+  border: 0.3rem solid #ffcf41;
+  padding: 2rem;
+  border-radius: 3rem;
+}
+
+.search-result-div {
+  /* position sticky gör så att stjärnorna inte hamnar framför article-diven.
+  Vet inte varför det funkar på detalj-sidan utan att sticky anges.
+  Samt sticky kanske inte är det bästa alternativet men det verkar
+  funka utan att störa något annat så jag kör på det sålänge */
+  position: sticky;
+}
+.input-group {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  border-radius: 3rem;
+  padding: 1rem;
+  border-color: #ffcf41;
+  border-style: solid;
+}
+
+input {
+  border: none !important;
+}
+
+li {
+  list-style: none;
 }

@@ -13,44 +13,60 @@
     />
     <!-- EGET CSS -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Stjärnor från https://codemyui.com/parallax-pixel-stars-using-pure-css/ -->
+    <link rel="stylesheet" href="stars.css" />
+    <!-- Star Wars "official font" (enligt wikipedia om News Gothic) -->
+    <link rel="stylesheet" href="https://use.typekit.net/ddv3wye.css" />
     <title>Star Wars API</title>
   </head>
-  <body>
+  <body class="container text-center">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
     <header>
-      <h1>Star Wars Wiki</h1>
+      <h1 class="display-4">Star Wars Wiki</h1>
     </header>
-
     <!-- Söka åtminstone på titeln -->
-    <form action="">
-      <label for="search-input">Search Movie</label>
-      <input
-        type="search"
-        id="search-input"
-        aria-label="Search trough Star Wars content"
-      />
-      <button id="btn-login" type="button">Search</button>
-    </form>
-
+    <h2><label for="search-input">Search Movie</label></h2>
+    <div class="d-flex justify-content-center">
+      <form class="input-group col-lg-6" action="">
+        <input
+          type="search"
+          id="search-input"
+          class="form-control rounded"
+          aria-label="Search trough Star Wars content"
+          placeholder="Enter name of the movie here"
+        />
+        <button class="btn btn-warning" id="btn-login" type="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.5rem"
+            height="1.5rem"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
     <!-- Sökresultat ska visa filmtitel, regissörens namn, filmens opening crawl -->
     <!-- Ska även finnas en länk från sökresultatet till detaljsida -->
     <!-- Div för att lägga in templaten i från javascripten -->
-
     <!-- Sökresultat -->
-    <div id="results"></div>
-
-    <div class="row">
-      <div class="col m-3">
-        <div id="search-result"></div>
-        <template id="template-film">
-          <div class="title"></div>
-          <div class="director"></div>
-          <div class="opening-crawl"></div>
-          <div>
-            <a href="#" class="link-to-details">Details</a>
-          </div>
-        </template>
-      </div>
-    </div>
+    <div class="d-md-flex justify-content-center m-3" id="search-result"></div>
+    <template id="template-film">
+      <article class="m-3 search-result-div">
+        <h3 class="title"></h3>
+        <div class="director results-div"></div>
+        <div class="opening-crawl results-div"></div>
+        <div class="nav-details">
+          <a href="#" class="link-to-details text-warning">Details</a>
+        </div>
+      </article>
+    </template>
     <!-- EGET SKRIPT -->
     <script src="app.js"></script>
     <!-- BOOTSTRAP -->
