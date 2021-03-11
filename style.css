@@ -102,3 +102,8 @@ span {
   font-weight: bold;
   color: #8ed8fc;
 }
+
+.details-body {
+  margin-right: 0;
+  margin-left: 0;
+}
