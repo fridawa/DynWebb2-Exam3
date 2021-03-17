@@ -1,19 +1,25 @@
-// Funktion för att skriva ut detaljer
+// Hämtar data från API för att skriva ut på detaljsidan
 const urlParams = new URLSearchParams(window.location.search);
 let uri = urlParams.get("url");
 console.log(uri);
 
 fetch(uri)
+  // Gör om data till json
   .then((response) => response.json())
   .then((y) => {
     detailed = y;
     console.log(detailed);
+    // Skickar även denna data som parameter till funktionen detailedPage
     detailedPage(detailed);
   });
 
-// Till denna output av data har jag inspirerats av kod från YT-videon om star wars api:t
-// samt även väderapplikationen
-
+// Funktion för att skriva ut ny data på detaljsidan
+// Till denna output av data har jag inspirerats av kod från
+// YouTube-videon https://www.youtube.com/watch?v=Y6fhfs6nBww som även den behandlar SW-API:t
+// Jag har även hämtat inspirtion från väderapplikationen i exam 2 som även den skriver ut data från ett API.
+// Koden nedan är alltså en blanding av mitt egna och de två källorna.
+// Funktionen får data från fetch ovan som den skriver ut med hjälp av DOM
+// i de element som redan skapats i html-filen. Hittar element med hjälp av html-id.
 function detailedPage(detailed) {
   console.log(detailed);
   document.getElementById("title").innerHTML = `${detailed.title}`;

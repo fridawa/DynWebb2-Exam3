@@ -19,31 +19,38 @@
     <link rel="stylesheet" href="https://use.typekit.net/ddv3wye.css" />
     <title>Details - Star Wars API</title>
   </head>
-  
-  <body class="container col-12 text-center" id="details-body">
+
+  <body onload="init()" class="container col-12 text-center" id="details-body">
+    <!-- Divar för de stjärnor som hämtats från https://codemyui.com/parallax-pixel-stars-using-pure-css/ -->
     <div id="stars"></div>
-  <div id="stars2"></div>
-  <div id="stars3"></div>
-    <header></header>
-      <h1 class="display-4">Star Wars Wiki</h1>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+
+    <!-- Header innehållandes en navigation (bara en länk, tillbaka til ny sökning, så mest gjort för principen) -->
+    <header>
+      <h1 class="display-4">
+        <a class="h1" href="index.html">Star Wars Wiki</a>
+      </h1>
       <nav>
         <ul>
           <li>
-            <a class="text-warning nav-back" href="index.html"
-              >New Search</a
-            >
+            <a class="text-warning nav-back" href="index.html">New Search</a>
           </li>
         </ul>
       </nav>
     </header>
-    <!-- Det hade varit kul om opening crawl kom som en sån här
-    text som la sig först på hela sidan innan den "vanliga" sidan dök upp
-  https://css-tricks.com/snippets/css/star-wars-crawl-text/ -->
-    <!-- Detalj-sida ska innehålla: titel, regissör, producent,
-    "opening crawl", releasedatum, antal karaktärer
-    och antal olika rymdskepp som ingår i filmen. -->
+
+    <div class="d-md-flex justify-content-center m-3">
+      <a class="m-2 aligned-text" href="#" id="left-aligned"
+        >Vänsterställd text</a
+      >
+      <a class="m-2 aligned-text" href="#" id="centered">Centrerad text</a>
+    </div>
+    <!-- Här skapas element som via skriptet ska fyllas med data från API:t. Varje div får ett eget ID för att kunna hämtas upp och tilldelas data. -->
+    <!-- De omslutande divarna finns med enbart pga att kunna lägga Bootstrap klasser så att webbplatsen blir responsiv -->
     <div class="d-flex justify-content-center">
-      <div class="col-md-6 details-div">
+      <!-- Article används då innehållet gott och väl kan "stå för sig självt" vilken elementet ska användas till -->
+      <article class="col-md-6 details-div">
         <h2 id="title"></h2>
         <div class="m-2" id="episode-id"></div>
         <div class="m-2" id="opening-crawl"></div>
@@ -55,10 +62,13 @@
         <div class="m-2" id="starships"></div>
         <div class="m-2" id="vehicles"></div>
         <div class="m-2" id="species"></div>
-      </div>
+      </article>
     </div>
+
     <!-- EGET SKRIPT -->
     <script src="details.js"></script>
+    <script src="textalignment.js"></script>
+
     <!-- BOOTSTRAP -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

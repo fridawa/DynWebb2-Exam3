@@ -1,12 +1,13 @@
 // Skapar arrayen där datan ska sparas
 let filmArray = [];
 
-// URL till API
+// sätter variabeln URL till API-adressen
 const url = "https://swapi.dev/api/films/";
 
-// Fetch
+// En vanlig fetch som tar variabeln url som paramteter(argument?)
 fetch(url)
-  // Översätter datan till json-format
+  // .then som OM responsen är ok tar responsen och översätter den till json.format
+  // om det inte är så så ska ett felmeddelande visas
   .then((response) => {
     if (response.ok) {
       return response.json();
@@ -15,44 +16,64 @@ fetch(url)
     }
   })
 
-  // Lägger datan från API i en variabel
+  // .then som lägger datan från API i en mer semantisk variabel
   .then((x) => {
+    // vill bara ha .results för det är där i som all data som ska anävndas finns
     filmArray = x.results;
     console.log(filmArray);
   })
 
+  //om fel visas error
   .catch((error) => {
     alert(error);
   });
 
-// kod från johans väderapplikation
-// förstå detta bättre innan inlämning!!!
-function matchSubstring(main, sub) {
+// Funktion som kollar om imputen från sökningen matchar någon av titlarna i API:t
+// Kod hämtad från Johans väderapplikation
+// title och input anges som paramterar
+// title är filmtiteln och input är söksträngen från inputen
+// Funktionen använder  substr samt localeCompare
+// Substr startar på index 0 i den aktuella strängen (input) och fortsätter så långt som strängen är
+// localecompare jämför sedan strängen med titeln för att se om det matchar.
+// Det är alltså bara början av orden som kan matchas
+// Returnerar true om det matchar
+function matchSubstring(title, input) {
   return (
-    main.substr(0, sub.length).localeCompare(sub, "sv", {
+    title.substr(0, input.length).localeCompare(input, "en", {
       sensitivity: "base",
     }) === 0
   );
 }
 
 // SÖK EFTER FILM
-// Vid tid över: Fixa så att även tryck på keyup: enter funkar
+// först sökknappen som kopplas till en eventlistener vid klick som triggar funktionen searchFilm
 document.getElementById("btn-login").addEventListener("click", searchFilm);
 
-// kod från johans väderapplikation
+// Funktionen inpirerad av Johans väderapplikation blandat med föreläsningar i kursen
 function searchFilm() {
+  // Lägger olika html-element i variabler
   const inputElement = document.getElementById("search-input");
   const searchResultsElement = document.getElementById("search-result");
   const templateFilm = document.getElementById("template-film");
+  // trim() på query för att enklare kunna hantera strängen
+  // trim tar bort om det skulle vara space i början och slutet av en sträng
+  // påvekrar alltså inte tex mellanslag mitt i en mening
   const query = inputElement.value.trim();
 
   if (query.length === 0) return; // Stoppar funktionen här (alltså söker ej) om inget angetts i sökfältet
 
-  let selection = filmArray.filter((film) => matchSubstring(film.title, query));
+  // anger en variabel movies. Den får innehållet från den söksträng som matchas i funktionen
+  // filtrerar filmarrayen och returnerar det som finns i funtkionen matchsubstring
+  let movies = filmArray.filter(function (film) {
+    return matchSubstring(film.title, query);
+  });
 
   searchResultsElement.innerHTML = ""; // Tömmer sökresultaten mellan varje klick på sök-knappen
 
-  selection.forEach((film) => {
+  // Med det värde som nu ligger i variabeln movies görs en forEach loop
+  // som itererar över innehållet i aktuell film och skriver ut detta mha DOM
+  // Inehållet skrivs ut i templaten som sedan appensas med appendChild på searchResultsElement
+  movies.forEach((film) => {
     let element = document.importNode(templateFilm.content, true);
     element.querySelector(".title").innerHTML = `${film.title}`;
     element.querySelector(
@@ -68,6 +89,4 @@ function searchFilm() {
 
     searchResultsElement.appendChild(element);
   });
-
-  console.log(query);
 }

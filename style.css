@@ -1,4 +1,8 @@
-/* Fonts from: https://www.fontspace.com/sf-distant-galaxy-font-f6436 */
+/* Det mesta justeras med Bootstrap men nedan är lite fonts, färger osv */
+/* Det mesta är ganska självklart, kort kommenterat på de ställen där jag anser att det behövts */
+
+/* Fonts från https://www.fontspace.com/sf-distant-galaxy-font-f6436 */
+/* La alla här pga kanske vill ändra, så alla används inte just nu */
 @font-face {
   font-family: "SW-BI";
   src: url(fonts/sw-font-black-italic.ttf);
@@ -28,17 +32,31 @@
   src: url(fonts/sw-font-reg.ttf);
 }
 
+/* Nollställer */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-h1 {
+
+body {
+  background: #121212;
+}
+
+.h1 {
   font-family: "SW-I", arial;
   color: #ffcf41;
   font-weight: bold;
+  font-size: 3rem;
+
 }
 
+/* För att göra texten mindre på de allra minsta enheterna */
+@media (max-width: 576px) {.h1 {
+font-size: 1.7rem;}}
+
+
+}
 h2 {
   font-family: "SW-BI", arial;
   color: #ffcf41;
@@ -46,9 +64,6 @@ h2 {
 h3 {
   font-family: "SW-BR", arial;
   color: #ffcf41;
-}
-body {
-  background: rgb(18, 18, 18);
 }
 
 .details-div,
@@ -62,15 +77,16 @@ input {
 .details-div,
 .results-div,
 label {
-  color: rgb(237, 235, 235);
+  color: #edebeb;
 }
 
 .details-div,
 .search-result-div {
-  background-color: rgb(37, 37, 37);
+  background-color: #252525);
   border: 0.3rem solid #ffcf41;
   padding: 2rem;
   border-radius: 3rem;
+
 }
 
 .search-result-div {
@@ -83,13 +99,14 @@ label {
 
 .input-group {
   position: relative;
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff);
   border-radius: 3rem;
   padding: 0.7rem 2rem;
   border-color: #ffcf41;
   border-style: solid;
 }
 
+/* Important för att override bootstraps css som ligger på detta element i html */
 input {
   border: none !important;
 }
@@ -106,4 +123,14 @@ span {
 .details-body {
   margin-right: 0;
   margin-left: 0;
+}
+
+.aligned-text{
+ 
+  font-family: "news-gothic-std", sans-serif;
+  color: #edebeb;
+
+}
+.aligned-text:hover{
+  color: #ffcf41;
 }

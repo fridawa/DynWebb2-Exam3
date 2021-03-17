@@ -19,14 +19,20 @@
     <link rel="stylesheet" href="https://use.typekit.net/ddv3wye.css" />
     <title>Star Wars API</title>
   </head>
-  <body class="container col-12 text-center">
+
+  <body onload="init()" class="container col-12 text-center">
+    <!-- Divar för de stjärnor som hämtats från https://codemyui.com/parallax-pixel-stars-using-pure-css/ -->
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
+
     <header>
-      <h1 class="display-4 pt-4">Star Wars Wiki</h1>
+      <h1 class="display-4">
+        <a class="h1" href="index.html">Star Wars Wiki</a>
+      </h1>
     </header>
-    <!-- Söka åtminstone på titeln -->
+
+    <!-- Sökfält som i JS kopplas till data från API för att söka efter filmtitel-->
     <h2><label for="search-input">Search Movie</label></h2>
     <div class="d-flex justify-content-center">
       <form class="input-group col-md-6 col-xl-4" action="">
@@ -52,23 +58,33 @@
         </button>
       </form>
     </div>
-    <!-- Sökresultat ska visa filmtitel, regissörens namn, filmens opening crawl -->
-    <!-- Ska även finnas en länk från sökresultatet till detaljsida -->
-    <!-- Div för att lägga in templaten i från javascripten -->
+
     <!-- Sökresultat -->
+    <!-- Sökresultatet genreraras i en template som sedan appendas till diven nedan. -->
+    <!-- Diven som håller sökresultatet -->
+    <div class="d-md-flex justify-content-center m-3">
+      <a class="m-2 aligned-text" href="#" id="left-aligned"
+        >Vänsterställd text</a
+      >
+      <a class="m-2 aligned-text" href="#" id="centered">Centrerad text</a>
+    </div>
     <div class="d-md-flex justify-content-center m-3" id="search-result"></div>
+    <!-- Template som data kan läggas till i -->
     <template id="template-film">
       <article class="m-3 search-result-div">
         <h3 class="title"></h3>
         <div class="director results-div"></div>
         <div class="opening-crawl results-div"></div>
-        <div class="nav-details">
+        <nav class="nav-details">
+          <!-- Länk som mha jS tilldelas ett href som är unikt för  datan så att länken kan gå till den aktuella detaljsidan -->
           <a href="#" class="link-to-details text-warning">Details</a>
-        </div>
+        </nav>
       </article>
     </template>
+
     <!-- EGET SKRIPT -->
     <script src="app.js"></script>
+    <script src="textalignment.js"></script>
     <!-- BOOTSTRAP -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
