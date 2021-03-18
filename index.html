@@ -43,7 +43,7 @@
           aria-label="Search trough Star Wars content"
           placeholder="Movie name"
         />
-        <button class="btn btn-warning" id="btn-login" type="button">
+        <button class="btn btn-warning" id="btn-search" type="button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.5rem"
@@ -59,28 +59,38 @@
       </form>
     </div>
 
-    <!-- Sökresultat -->
-    <!-- Sökresultatet genreraras i en template som sedan appendas till diven nedan. -->
-    <!-- Diven som håller sökresultatet -->
+    <!-- Vänster/centrerad text -->
     <div class="d-md-flex justify-content-center m-3">
       <a class="m-2 aligned-text" href="#" id="left-aligned"
         >Vänsterställd text</a
       >
       <a class="m-2 aligned-text" href="#" id="centered">Centrerad text</a>
     </div>
+    <!-- Sökresultat -->
+    <!-- Sökresultatet genreraras i en template som sedan appendas till diven nedan. -->
+    <!-- Diven som håller sökresultatet -->
     <div class="d-md-flex justify-content-center m-3" id="search-result"></div>
     <!-- Template som data kan läggas till i -->
     <template id="template-film">
-      <article class="m-3 search-result-div">
+      <article class="m-3 search-result-article">
         <h3 class="title"></h3>
         <div class="director results-div"></div>
         <div class="opening-crawl results-div"></div>
         <nav class="nav-details">
           <!-- Länk som mha jS tilldelas ett href som är unikt för  datan så att länken kan gå till den aktuella detaljsidan -->
-          <a href="#" class="link-to-details text-warning">Details</a>
+          <a href="#" class="link-to-details">Details</a>
         </nav>
       </article>
     </template>
+
+    <!-- Modal som visar felmeddelande ifall sökningen inte funkar -->
+    <div id="modal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div onclick="closeModal()" class="stang">&#10005;</div>
+        <p>Write a movie name in the search field</p>
+      </div>
+    </div>
 
     <!-- EGET SKRIPT -->
     <script src="app.js"></script>

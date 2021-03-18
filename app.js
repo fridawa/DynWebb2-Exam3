@@ -1,3 +1,6 @@
+// Global variabel
+let modal = document.getElementById("modal");
+
 // Skapar arrayen där datan ska sparas
 let filmArray = [];
 
@@ -28,16 +31,15 @@ fetch(url)
     alert(error);
   });
 
-// Funktion som kollar om imputen från sökningen matchar någon av titlarna i API:t
-// Kod hämtad från Johans väderapplikation
+// Funktion som kollar om inputen från sökningen matchar någon av titlarna i API:t
+// Kod inpirerad av Johans väderapplikation
 // title och input anges som paramterar
 // title är filmtiteln och input är söksträngen från inputen
-// Funktionen använder  substr samt localeCompare
-// Substr startar på index 0 i den aktuella strängen (input) och fortsätter så långt som strängen är
-// localecompare jämför sedan strängen med titeln för att se om det matchar.
+// Substr startar på index 0 i den aktuella strängen (input) och fortsätter strängens längd
+// Localecompare jämför sedan strängen med titeln för att se om det matchar.
 // Det är alltså bara början av orden som kan matchas
 // Returnerar true om det matchar
-function matchSubstring(title, input) {
+function matchInput(title, input) {
   return (
     title.substr(0, input.length).localeCompare(input, "en", {
       sensitivity: "base",
@@ -47,7 +49,7 @@ function matchSubstring(title, input) {
 
 // SÖK EFTER FILM
 // först sökknappen som kopplas till en eventlistener vid klick som triggar funktionen searchFilm
-document.getElementById("btn-login").addEventListener("click", searchFilm);
+document.getElementById("btn-search").addEventListener("click", searchFilm);
 
 // Funktionen inpirerad av Johans väderapplikation blandat med föreläsningar i kursen
 function searchFilm() {
@@ -60,12 +62,23 @@ function searchFilm() {
   // påvekrar alltså inte tex mellanslag mitt i en mening
   const query = inputElement.value.trim();
 
-  if (query.length === 0) return; // Stoppar funktionen här (alltså söker ej) om inget angetts i sökfältet
+  // Felmeddelande i modal samt konsollen om inputfältet är tomt
+  // läst på om felmeddelanden hos:
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
+  try {
+    if (query.length === 0)
+      throw "You have to write a movie name in the input field"; // kollar om fältet är tomt
+  } catch (err) {
+    //annars visas felmeddelande
+    console.error(err); // i konsollen
+    modal.style.display = "block"; // och som en modal för användaren
+    return; // Stoppar funktionen här om inget angetts i sökfältet
+  }
 
   // anger en variabel movies. Den får innehållet från den söksträng som matchas i funktionen
-  // filtrerar filmarrayen och returnerar det som finns i funtkionen matchsubstring
+  // filtrerar filmarrayen och returnerar det som finns i funtkionen matchInput
   let movies = filmArray.filter(function (film) {
-    return matchSubstring(film.title, query);
+    return matchInput(film.title, query);
   });
 
   searchResultsElement.innerHTML = ""; // Tömmer sökresultaten mellan varje klick på sök-knappen
@@ -85,8 +98,21 @@ function searchFilm() {
 
     element.querySelector(
       ".link-to-details"
-    ).href = `details.html?url=${film.url.replace("http", "https")}`; //Safari funkade inte med http
+    ).href = `details.html?url=${film.url.replace("http", "https")}`; //replace pga Safari funkade inte med http
 
     searchResultsElement.appendChild(element);
   });
 }
+
+// Stänger modalen med felmeddelande
+// vid klick på krysset
+function closeModal() {
+  modal.style.display = "none";
+}
+
+// eller klick utanför boxen
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};

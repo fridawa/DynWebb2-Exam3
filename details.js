@@ -1,27 +1,30 @@
-// Hämtar data från API för att skriva ut på detaljsidan
+// Skapar ny variabel som tar query från urlen (det som står efter frågetecknet)
 const urlParams = new URLSearchParams(window.location.search);
+//använder metoden get() med parametern url för att komma åt det som står i queriet för url
+// https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get förklarar bra
 let uri = urlParams.get("url");
-console.log(uri);
+// console.log(uri);
+// console.log(urlParams);
 
+//Gör sedan en ny fetch på den nya urlen som tagits fram för att få aktuell data
+// från API:t som matchar den data som användaren tryckt på i sökningen
 fetch(uri)
   // Gör om data till json
   .then((response) => response.json())
+  // LÄgger datan i en variabel
   .then((y) => {
     detailed = y;
-    console.log(detailed);
-    // Skickar även denna data som parameter till funktionen detailedPage
+    // console.log(detailed);
+    // Skickar denna data som parameter till funktionen detailedPage
     detailedPage(detailed);
   });
 
 // Funktion för att skriva ut ny data på detaljsidan
-// Till denna output av data har jag inspirerats av kod från
-// YouTube-videon https://www.youtube.com/watch?v=Y6fhfs6nBww som även den behandlar SW-API:t
-// Jag har även hämtat inspirtion från väderapplikationen i exam 2 som även den skriver ut data från ett API.
-// Koden nedan är alltså en blanding av mitt egna och de två källorna.
+// I och med att det bara är en film som ska visas på detaljsidan behövs ingen loop.
 // Funktionen får data från fetch ovan som den skriver ut med hjälp av DOM
 // i de element som redan skapats i html-filen. Hittar element med hjälp av html-id.
 function detailedPage(detailed) {
-  console.log(detailed);
+  // console.log(detailed);
   document.getElementById("title").innerHTML = `${detailed.title}`;
   document.getElementById(
     "episode-id"

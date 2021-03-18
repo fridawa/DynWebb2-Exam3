@@ -39,10 +39,12 @@
   box-sizing: border-box;
 }
 
+/* Bakgrund */
 body {
   background: #121212;
 }
 
+/* Sidans heading */
 .h1 {
   font-family: "SW-I", arial;
   color: #ffcf41;
@@ -51,12 +53,16 @@ body {
 
 }
 
-/* För att göra texten mindre på de allra minsta enheterna */
+.h1:hover{
+  color: #edebeb;
+  text-decoration: none;
+}
+
+/* För att göra h1 mindre på de allra minsta enheterna */
 @media (max-width: 576px) {.h1 {
 font-size: 1.7rem;}}
 
-
-}
+/* Styling rubriker */
 h2 {
   font-family: "SW-BI", arial;
   color: #ffcf41;
@@ -66,6 +72,7 @@ h3 {
   color: #ffcf41;
 }
 
+/* Sätter typsnitt på resultat och navigation */
 .details-div,
 .results-div,
 .nav-back,
@@ -74,29 +81,21 @@ input {
   font-family: "news-gothic-std", sans-serif;
 }
 
-.details-div,
-.results-div,
-label {
-  color: #edebeb;
+/* Styling naviagtion mellan sidorna */
+.nav-back{
+  color: #ffcf41;
+  font-size: 1.5rem;
 }
 
-.details-div,
-.search-result-div {
-  background-color: #252525);
-  border: 0.3rem solid #ffcf41;
-  padding: 2rem;
-  border-radius: 3rem;
-
+.link-to-details{
+  color: #ffcf41;
+}
+.nav-back:hover, .link-to-details:hover{
+color: #edebeb;
+text-decoration: none;
 }
 
-.search-result-div {
-  /* position sticky gör så att stjärnorna inte hamnar framför article-diven.
-  Vet inte varför det funkar på detalj-sidan utan att sticky anges.
-  Samt sticky kanske inte är det bästa alternativet men det verkar
-  funka utan att störa något annat så jag kör på det sålänge */
-  position: sticky;
-}
-
+/* Inputfältet */
 .input-group {
   position: relative;
   background-color: #ffffff);
@@ -111,8 +110,33 @@ input {
   border: none !important;
 }
 
+/* Ta bort list-bullets */
 li {
   list-style: none;
+}
+
+/* Style på de element som visar datan från API */
+.details-div,
+.results-div,
+label {
+  color: #edebeb;
+}
+
+.details-div,
+.search-result-article {
+  background-color: #252525;
+  border: 0.3rem solid #ffcf41;
+  padding: 2rem;
+  border-radius: 3rem;
+
+}
+
+.search-result-article {
+  /* position sticky gör så att stjärnorna inte hamnar framför article-diven.
+  Vet inte varför det funkar på detalj-sidan utan att sticky anges.
+  Samt sticky kanske inte är det bästa alternativet men det verkar
+  funka utan att störa något annat så jag kör på det sålänge */
+  position: sticky;
 }
 
 span {
@@ -125,12 +149,48 @@ span {
   margin-left: 0;
 }
 
+/* Länkarna som sköter textalignment */
 .aligned-text{
- 
   font-family: "news-gothic-std", sans-serif;
-  color: #edebeb;
+  color: #ffcf41;
 
 }
 .aligned-text:hover{
-  color: #ffcf41;
+  color: #edebeb;
+  text-decoration: none;
+}
+
+/* Modal bakgrund*/
+.modal {
+  display: none; 
+  padding-top: 20vh; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgb(0,0,0, 0.7); 
+  
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #ffcf41;
+  margin: auto;
+  padding: 20px;
+  border: 0.4rem solid #edebeb;
+  width: 90vw;
+  color: #121212;
+}
+
+/* Minska rutan på större skärmar */
+@media (min-width: 768px) {
+  .modal-content {
+  width: 50vw;}
+}
+
+/* Stäng modalen */
+.stang{
+  font-size: 2rem;
+}
+
+.stang:hover{
+  color:#edebeb;  
 }
